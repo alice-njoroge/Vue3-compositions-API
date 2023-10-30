@@ -27,11 +27,7 @@ const charCount = computed(()=>{
   return newItem.value.length;
 })
 const reversedItems = computed(()=>{
-  const anotherArray = []
-  items.forEach(item => {
-    anotherArray.push(item)
-  })
-  return anotherArray.reverse()
+  return [...items].reverse()
 })
 
 
