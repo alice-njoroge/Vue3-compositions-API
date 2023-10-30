@@ -7,9 +7,9 @@ const editing = ref(false);
 const highPriority = ref(false);
 
 const items = reactive([
-  {name: 'pens', id: 1},
-  {name: 'laptops', id: 2},
-  {name: 'books', id: 3},
+  {name: 'pens', highPriority: false, id: 1},
+  {name: 'laptops', highPriority: false, id: 2},
+  {name: 'books', highPriority: true, id: 3},
 ])
 
 const addItem = () => {
@@ -36,8 +36,8 @@ const doEdit = (e)=>{
       </div>
 
       <div class="card-body">
-        <ul v-if="items.length" v-for="item in items" :key="item.id">
-          <li> {{ item.name }}</li>
+        <ul v-if="items.length" v-for="({item, name, highPriority, id}, index ) in items" :key="id">
+          <li :class="{ priority: highPriority }" > {{ name }}</li>
         </ul>
 
         <p v-else> Sorry, Nothing to see here </p>
@@ -58,5 +58,9 @@ const doEdit = (e)=>{
 </template>
 
 <style scoped>
+
+.priority {
+  color: red ;
+}
 
 </style>
