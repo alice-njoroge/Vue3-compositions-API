@@ -3,16 +3,22 @@ import {reactive, ref} from "vue";
 
 const header = ref('Shopping Portal');
 const newItem = ref('');
+const editing = ref(false);
 const highPriority = ref(false);
 
 const items = reactive([
-  // {name: 'pens', id: 1},
-  // {name: 'laptops', id: 2},
-  // {name: 'books', id: 3},
+  {name: 'pens', id: 1},
+  {name: 'laptops', id: 2},
+  {name: 'books', id: 3},
 ])
 
 const addItem = () => {
   items.push({id: items.length + 1, name: newItem.value});
+  newItem.value = '';
+}
+
+const doEdit = (e)=>{
+  editing.value = e;
   newItem.value = '';
 }
 
@@ -25,6 +31,8 @@ const addItem = () => {
     <div class="card m-3">
       <div class=" mx-3 card-title">
         <h2>{{ header }}</h2>
+        <button @click="doEdit(false)" class=" mx-2 btn btn-secondary">cancel</button>
+        <button @click="doEdit(true)" class="btn btn-primary" >Add Items</button>
       </div>
 
       <div class="card-body">
@@ -34,7 +42,7 @@ const addItem = () => {
 
         <p v-else> Sorry, Nothing to see here </p>
         <hr>
-        <form @submit.prevent="addItem">
+        <form v-if="editing" @submit.prevent="addItem">
           <h3>Add New </h3>
           <input v-model.trim="newItem" @keyup.enter="addItem"
                  placeholder="add a new item">
