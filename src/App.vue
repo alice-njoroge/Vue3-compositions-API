@@ -47,7 +47,7 @@ const doEdit = (e)=>{
           <input v-model.trim="newItem" @keyup.enter="addItem"
                  placeholder="add a new item">
           <input class="m-2" v-model="highPriority" type="checkbox">
-          <button v-bind:disabled="newItem.length === 0" type="submit" class="btn btn-primary m-2"> Add</button>
+          <button :disabled="newItem.length < 3" type="submit" class="btn btn-primary m-2"> Add</button>
         </form>
       </div>
 
