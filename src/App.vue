@@ -1,10 +1,11 @@
 <script setup>
-import {reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 
 const header = ref('Shopping Portal');
 const newItem = ref('');
 const editing = ref(false);
 const highPriority = ref(false);
+
 
 const items = reactive([
   {name: 'pens', highPriority: false, id: 1},
@@ -22,6 +23,17 @@ const doEdit = (e)=>{
   newItem.value = '';
 }
 
+const charCount = computed(()=>{
+  return newItem.value.length;
+})
+const reversedItems = computed(()=>{
+  const anotherArray = []
+  items.forEach(item => {
+    anotherArray.push(item)
+  })
+  return anotherArray.reverse()
+})
+
 
 </script>
 
@@ -36,7 +48,7 @@ const doEdit = (e)=>{
       </div>
 
       <div class="card-body">
-        <ul v-if="items.length" v-for="({item, name, highPriority, id}, index ) in items" :key="id">
+        <ul v-if="items.length" v-for="({item, name, highPriority, id}, index ) in reversedItems" :key="id">
           <li :class="{ priority: highPriority }" > {{ name }}</li>
         </ul>
 
@@ -48,6 +60,7 @@ const doEdit = (e)=>{
                  placeholder="add a new item">
           <input class="m-2" v-model="highPriority" type="checkbox">
           <button :disabled="newItem.length < 3" type="submit" class="btn btn-primary m-2"> Add</button>
+          <p>{{charCount}}/200</p>
         </form>
       </div>
 
