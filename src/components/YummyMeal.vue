@@ -24,8 +24,8 @@ export default {
 <template>
 
 <div>
-  <strong> 🍔- {{ name}}</strong>
-  {{priceSentence}}
+  <strong>{{ name}} - </strong>
+<!--  <span>{{priceSentence}}</span> - -->
   <button @click="addToCart">Add to Cart</button>
 </div>
 
