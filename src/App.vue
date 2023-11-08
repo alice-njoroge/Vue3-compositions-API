@@ -15,7 +15,7 @@ export default {
     const addItem = (item) => cart.push(item);
     // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
     watch(
-        ()=> [...cart],
+        [name, ()=> [...cart]],
         (cartNew, cartOld)=>console.log(cartNew, cartOld))
     return {name, placeOrder, addItem, meals, cart}
   },
