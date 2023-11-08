@@ -1,6 +1,6 @@
 <script>
 import YummyMeal from "@/components/YummyMeal.vue";
-import {reactive, ref, watch} from "vue";
+import {reactive, ref, watch, watchEffect} from "vue";
 export default {
   components: {YummyMeal},
   setup() {
@@ -14,10 +14,7 @@ export default {
     const placeOrder = () => alert('your order has been placed!')
     const addItem = (item) => cart.push(item);
     // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
-    const removeWatcher = watch(
-        [name, ()=> [...cart]],
-        (cartNew, cartOld)=>
-            alert(cartNew.join('\n'))
+    const removeWatcher = watchEffect(()=> alert(cart.join('\n'))
     )
     return {name, placeOrder, addItem, meals, cart, removeWatcher}
   },
