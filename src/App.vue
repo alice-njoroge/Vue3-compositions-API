@@ -1,22 +1,16 @@
 <script>
 import YummyMeal from "@/components/YummyMeal.vue";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 export default {
   components: {YummyMeal},
   setup() {
     const name = ref("Cheesy Dribbler");
     const placeOrder = () => alert('your order has been placed!')
-    const addItem = (item) => alert(`adding ${item} to cart`)
+    const addItem = (item) => alert(`adding ${item} to cart`);
+    watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal));
 
     return {name, placeOrder, addItem}
-
   },
-  watch: {
-    name(oldVal, newVal) {
-      console.log(newVal, oldVal)
-
-    }
-  }
 }
 
 </script>
