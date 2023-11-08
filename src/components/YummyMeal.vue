@@ -25,12 +25,24 @@ export default {
 
 <div>
   <strong>{{ name}} - </strong>
+  {{mealPrice}}
 <!--  <span>{{priceSentence}}</span> - -->
-  <button @click="addToCart">Add to Cart</button>
+  <button class="button" @click="addToCart">Add to Cart</button>
 </div>
 
 </template>
 
 <style scoped>
+.button {
+  background-color:  dodgerblue; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 5px ;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 </style>
