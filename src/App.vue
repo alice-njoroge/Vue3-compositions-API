@@ -7,7 +7,7 @@ export default {
     const name = ref("Cheesy Dribbler");
     const placeOrder = () => alert('your order has been placed!')
     const addItem = (item) => alert(`adding ${item} to cart`);
-    watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal));
+    watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
 
     return {name, placeOrder, addItem}
   },
