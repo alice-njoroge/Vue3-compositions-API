@@ -14,10 +14,10 @@ export default {
     const placeOrder = () => alert('your order has been placed!')
     const addItem = (item) => cart.push(item);
     // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
-    watch(
+    const removeWatcher = watch(
         [name, ()=> [...cart]],
         (cartNew, cartOld)=>console.log(cartNew, cartOld))
-    return {name, placeOrder, addItem, meals, cart}
+    return {name, placeOrder, addItem, meals, cart, removeWatcher}
   },
 }
 
@@ -29,6 +29,7 @@ export default {
     <h1>{{ name }}</h1>
 
     <button @click="placeOrder"> Place order</button>
+    <button @click="removeWatcher"> Remove watcher</button>
     <YummyMeal
         v-for="meal in meals"
         :name="meal.name"
