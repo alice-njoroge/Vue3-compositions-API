@@ -1,14 +1,21 @@
 <script>
 import YummyMeal from "@/components/YummyMeal.vue";
+import {ref} from "vue";
 export default {
   components: {YummyMeal},
   setup() {
-    const name = "Cheesy Dribbler";
+    const name = ref("Cheesy Dribbler");
     const placeOrder = () => alert('your order has been placed!')
     const addItem = (item) => alert(`adding ${item} to cart`)
 
     return {name, placeOrder, addItem}
 
+  },
+  watch: {
+    name(oldVal, newVal) {
+      console.log(newVal, oldVal)
+
+    }
   }
 }
 
@@ -17,9 +24,10 @@ export default {
 <template>
 
   <div class="container">
-    <h1>{{name}}</h1>
-    <button @click="placeOrder" > Place order</button>
-    <YummyMeal name="Burger" @addToCart="addItem" :price="5" />
+    <h1>{{ name }}</h1>
+    <input v-model="name">
+    <button @click="placeOrder"> Place order</button>
+    <YummyMeal name="Burger" @addToCart="addItem" :price="5"/>
 
   </div>
 
