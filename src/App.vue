@@ -19,7 +19,7 @@ export default {
   <div class="container">
     <h1>{{name}}</h1>
     <button @click="placeOrder" > Place order</button>
-    <YummyMeal name="Burger" @addToCart="addItem" price="5"/>
+    <YummyMeal name="Burger" @addToCart="addItem" :price="5" />
 
   </div>
 
