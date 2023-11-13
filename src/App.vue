@@ -1,6 +1,7 @@
 <script>
 import YummyMeal from "@/components/YummyMeal.vue";
 import {reactive, ref, watch, watchEffect} from "vue";
+
 export default {
   components: {YummyMeal},
   setup() {
@@ -8,14 +9,18 @@ export default {
     const cart = reactive([]);
     const currencySymbol = "$"
     const meals = reactive([
-      {name:"🍔 Cheesy Dribbler", price: 5},
-      {name:"🍟 Fries", price: 3},
-      {name:"🥕 Impossible burger", price: 7},
+      {name: "🍔 Cheesy Dribbler", price: 5},
+      {name: "🍟 Fries", price: 3},
+      {name: "🥕 Impossible burger", price: 7},
     ])
     const placeOrder = () => alert('your order has been placed!')
     const addItem = (item) => cart.push(item);
     // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
-    const removeWatcher = watchEffect(()=> alert(cart.join('\n'))
+    const removeWatcher = watch(
+        () => [...cart],
+        (newVal) => {
+          alert(newVal.join('\n'))
+        }
     )
     return {name, placeOrder, addItem, meals, cart, removeWatcher, currencySymbol}
   },
@@ -29,7 +34,7 @@ export default {
     <h1>{{ name }}</h1>
 
     <button class="button" @click="placeOrder"> Place order</button>
-    <button  class="button" @click="removeWatcher"> hide Cart </button>
+    <button class="button" @click="removeWatcher"> hide Cart</button>
     <YummyMeal
         v-for="meal in meals"
         :name="meal.name"
