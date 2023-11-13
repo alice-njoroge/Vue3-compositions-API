@@ -8,7 +8,7 @@ export default {
     const name = ref("Burger King - Munich");
     const cart = reactive([]);
     const currencySymbol = ref('$')
-    provide('currencySymbol', currencySymbol )
+    provide('currencySymbol', currencySymbol)
     const meals = reactive([
       {name: "🍔 Cheesy Dribbler", price: 5},
       {name: "🍟 Fries", price: 3},
@@ -23,7 +23,7 @@ export default {
           alert(newVal.join('\n'))
         }
     )
-    return {name, placeOrder, addItem, meals, cart, removeWatcher}
+    return {name, placeOrder, addItem, meals, cart, removeWatcher, currencySymbol}
   },
 }
 
@@ -33,6 +33,11 @@ export default {
 
   <div class="container">
     <h1>{{ name }}</h1>
+    <span>Select an Option</span>
+    <select v-model="currencySymbol">
+      <option value="$">Dollar($)</option>
+      <option value="£">Euro(£)</option>
+    </select>
 
     <button class="button" @click="placeOrder"> Place order</button>
     <button class="button" @click="removeWatcher"> hide Cart</button>
