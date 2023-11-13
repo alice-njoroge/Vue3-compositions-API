@@ -6,6 +6,7 @@ export default {
   setup() {
     const name = ref("Burger King - Munich");
     const cart = reactive([]);
+    const currencySymbol = "$"
     const meals = reactive([
       {name:"🍔 Cheesy Dribbler", price: 5},
       {name:"🍟 Fries", price: 3},
@@ -16,7 +17,7 @@ export default {
     // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
     const removeWatcher = watchEffect(()=> alert(cart.join('\n'))
     )
-    return {name, placeOrder, addItem, meals, cart, removeWatcher}
+    return {name, placeOrder, addItem, meals, cart, removeWatcher, currencySymbol}
   },
 }
 
@@ -33,7 +34,9 @@ export default {
         v-for="meal in meals"
         :name="meal.name"
         @addToCart="addItem"
-        :price="meal.price"/>
+        :price="meal.price"
+        :currencySymbol="currencySymbol"
+    />
 
   </div>
 
