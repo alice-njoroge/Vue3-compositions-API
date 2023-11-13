@@ -1,21 +1,16 @@
-<script>
+<script setup>
+import {defineEmits} from 'vue'
+
+const props = defineProps({
+  name: String,
+  price: Number,
+})
+
+const emit = defineEmits(['addToCart'])
 
 import YummyMealPrice from "@/components/YummyMealPrice.vue";
+const addToCart = ()=> emit('addToCart', props.name);
 
-export default {
-  components: {YummyMealPrice},
-  props: {
-    name: String,
-    price: Number,
-  },
-  setup(props, {emit}) {
-    const addToCart = ()=> emit('addToCart', props.name);
-
-    return {addToCart}
-
-  }
-
-}
 
 </script>
 

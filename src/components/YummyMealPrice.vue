@@ -1,16 +1,12 @@
-<script>
-import {computed, inject} from "vue";
+<script setup>
+import {computed, inject, defineProps} from "vue";
+const props = defineProps({
+  price: Number
+})
 
-export default {
-  props: {
-    price: Number
-  },
-  setup(props) {
-    const currencySymbol = inject('currencySymbol', '$')
-    const mealPrice = computed(() => `${currencySymbol.value}${props.price.toFixed(2)}`)
-    return {mealPrice}
-  }
-}
+const currencySymbol = inject('currencySymbol', '$')
+const mealPrice = computed(() => `${currencySymbol.value}${props.price.toFixed(2)}`)
+
 </script>
 
 <template>

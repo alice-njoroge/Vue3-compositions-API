@@ -1,31 +1,25 @@
-<script>
+<script setup>
 import YummyMeal from "@/components/YummyMeal.vue";
 import {reactive, ref, watch, provide} from "vue";
 
-export default {
-  components: {YummyMeal},
-  setup() {
-    const name = ref("Burger King - Munich");
-    const cart = reactive([]);
-    const currencySymbol = ref('$')
-    provide('currencySymbol', currencySymbol)
-    const meals = reactive([
-      {name: "🍔 Cheesy Dribbler", price: 5},
-      {name: "🍟 Fries", price: 3},
-      {name: "🥕 Impossible burger", price: 7},
-    ])
-    const placeOrder = () => alert('your order has been placed!')
-    const addItem = (item) => cart.push(item);
-    // watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
-    const removeWatcher = watch(
-        () => [...cart],
-        (newVal) => {
-          alert(newVal.join('\n'))
-        }
-    )
-    return {name, placeOrder, addItem, meals, cart, removeWatcher, currencySymbol}
-  },
-}
+const name = ref("Burger King - Munich");
+const cart = reactive([]);
+const currencySymbol = ref('$')
+provide('currencySymbol', currencySymbol)
+const meals = reactive([
+  {name: "🍔 Cheesy Dribbler", price: 5},
+  {name: "🍟 Fries", price: 3},
+  {name: "🥕 Impossible burger", price: 7},
+])
+const placeOrder = () => alert('your order has been placed!')
+const addItem = (item) => cart.push(item);
+// watch(name, (newVal, oldVal) =>  console.log(newVal, oldVal), {immediate:true});
+const removeWatcher = watch(
+    () => [...cart],
+    (newVal) => {
+      alert(newVal.join('\n'))
+    }
+)
 
 </script>
 
