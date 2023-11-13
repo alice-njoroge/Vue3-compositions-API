@@ -7,7 +7,6 @@ export default {
   props: {
     name: String,
     price: Number,
-    currencySymbol: String
   },
   setup(props, {emit}) {
     const addToCart = ()=> emit('addToCart', props.name);
@@ -24,7 +23,7 @@ export default {
 
 <div>
   <strong>{{ name}} - </strong>
-  <yummy-meal-price :currencySymbol="currencySymbol" :price="price"/>
+  <yummy-meal-price :price="price"/>
   <button class="button" @click="addToCart">Add to Cart</button>
 </div>
 

@@ -1,13 +1,13 @@
 <script>
 import YummyMeal from "@/components/YummyMeal.vue";
-import {reactive, ref, watch, watchEffect} from "vue";
+import {reactive, ref, watch, provide} from "vue";
 
 export default {
   components: {YummyMeal},
   setup() {
     const name = ref("Burger King - Munich");
     const cart = reactive([]);
-    const currencySymbol = "$"
+    provide('currencySymbol', '$' )
     const meals = reactive([
       {name: "🍔 Cheesy Dribbler", price: 5},
       {name: "🍟 Fries", price: 3},
@@ -22,7 +22,7 @@ export default {
           alert(newVal.join('\n'))
         }
     )
-    return {name, placeOrder, addItem, meals, cart, removeWatcher, currencySymbol}
+    return {name, placeOrder, addItem, meals, cart, removeWatcher}
   },
 }
 
@@ -40,7 +40,6 @@ export default {
         :name="meal.name"
         @addToCart="addItem"
         :price="meal.price"
-        :currencySymbol="currencySymbol"
     />
 
   </div>

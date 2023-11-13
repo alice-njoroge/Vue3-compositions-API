@@ -1,13 +1,13 @@
 <script>
-import {computed} from "vue";
+import {computed, inject} from "vue";
 
 export default {
   props: {
-    currencySymbol: String,
     price: Number
   },
   setup(props) {
-    const mealPrice = computed(() => `${props.currencySymbol}${props.price.toFixed(2)}`)
+    const currencySymbol = inject('currencySymbol')
+    const mealPrice = computed(() => `${currencySymbol}${props.price.toFixed(2)}`)
     return {mealPrice}
   }
 }
