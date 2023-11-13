@@ -7,7 +7,7 @@ export default {
   },
   setup(props) {
     const currencySymbol = inject('currencySymbol')
-    const mealPrice = computed(() => `${currencySymbol}${props.price.toFixed(2)}`)
+    const mealPrice = computed(() => `${currencySymbol.value}${props.price.toFixed(2)}`)
     return {mealPrice}
   }
 }

@@ -7,7 +7,8 @@ export default {
   setup() {
     const name = ref("Burger King - Munich");
     const cart = reactive([]);
-    provide('currencySymbol', '$' )
+    const currencySymbol = ref('$')
+    provide('currencySymbol', currencySymbol )
     const meals = reactive([
       {name: "🍔 Cheesy Dribbler", price: 5},
       {name: "🍟 Fries", price: 3},
